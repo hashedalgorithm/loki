@@ -17,13 +17,14 @@ type TextInlineLinkProps = ParagraphProps & {
   target?: AnchorProps['target']
 };
 
+// Matches the pattern [<label>](<link>)
+const regex = /\[([^\]]+)\]\(([^)]+)\)/;
+
 const buildInnerHtml = (
   input: string,
   linkTarget: AnchorProps['target'],
   linkClassName?: string
 ) => {
-  // Matches the pattern [<label>](<link>)
-  const regex = /\[([^\]]+)\]\(([^)]+)\)/;
   let transformedString = input;
 
   while (true) {
